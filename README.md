@@ -1,4 +1,4 @@
-Agora - A Social Discussion Website Database Systems <br/>
+Agora - A Social Discussion Website Database System <br/>
 Nashiha Ahmed | 21402950 <br/>
 Raza Faraz | 21404239 <br/>
 Cholpon Mambetova | 21402612 <br/> 
