@@ -6,13 +6,15 @@ create table channel(
     description varchar(140),
     owner_id int(10),
     since timestamp,
-    foreign key (owner_id) references user(id));
+    foreign key (owner_id) references user(id))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //Private Channel
 
 create table private_channel(
     ID int(10) primary key,
-    foreign key(id) references channel(id));
+    foreign key(id) references channel(id))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //Subscribes
 
@@ -20,7 +22,8 @@ create table subscribes(
     userID int(10) primary key,
     channelID int(10),
     foreign key (userID) references user(ID),
-    foreign key (channelID) references channel(ID));
+    foreign key (channelID) references channel(ID))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //Requests
 
@@ -29,7 +32,8 @@ create table requests_follow(
     channelID int(10),
     isApproved boolean default false,
     foreign key (userID) references user(ID),
-    foreign key (channelID) references private_channel(ID));
+    foreign key (channelID) references private_channel(ID))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //bann
 
@@ -37,7 +41,7 @@ CREATE TABLE `bans` (
  `bannedUserID` int(10) NOT NULL AUTO_INCREMENT,
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`bannedUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //comments
@@ -50,7 +54,7 @@ CREATE TABLE `comment` (
  `helpful_flag` int(10) NOT NULL DEFAULT '0',
  `time_posted` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //removeChannel
@@ -60,7 +64,7 @@ CREATE TABLE `remove_channel` (
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`channelID`),
  CONSTRAINT `remove_channel_ibfk_1` FOREIGN KEY (`channelID`) REFERENCES `channel` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //remove post
@@ -70,7 +74,7 @@ CREATE TABLE `remove_post` (
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`postID`),
  CONSTRAINT `remove_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
@@ -80,7 +84,7 @@ CREATE TABLE `remove_comment` (
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`commentID`),
  CONSTRAINT `remove_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //remove commnent
@@ -90,7 +94,7 @@ CREATE TABLE `remove_comment` (
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`commentID`),
  CONSTRAINT `remove_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
@@ -102,7 +106,7 @@ CREATE TABLE `post` (
  `rating` int(11) DEFAULT '0',
  `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //has post
@@ -113,7 +117,7 @@ CREATE TABLE `has_post` (
  KEY `channelID` (`channelID`),
  CONSTRAINT `has_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`),
  CONSTRAINT `has_post_ibfk_2` FOREIGN KEY (`channelID`) REFERENCES `channel` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //post posts
@@ -122,7 +126,7 @@ CREATE TABLE `posts_post` (
  `userID` int(10) unsigned NOT NULL,
  PRIMARY KEY (`postID`),
  CONSTRAINT `posts_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //replies
@@ -133,7 +137,7 @@ CREATE TABLE `replies` (
  KEY `parentCommentID` (`parentCommentID`),
  CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`childCommentID`) REFERENCES `comment` (`ID`),
  CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`parentCommentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //has_comment
@@ -144,7 +148,7 @@ CREATE TABLE `has_comment` (
  KEY `postID` (`postID`),
  CONSTRAINT `has_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`),
  CONSTRAINT `has_comment_ibfk_2` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 //postComments
@@ -153,7 +157,7 @@ CREATE TABLE `posts_comment` (
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`commentID`),
  CONSTRAINT `posts_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
