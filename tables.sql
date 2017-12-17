@@ -1,8 +1,10 @@
+// Channel
 create table channel(
     id int(10) unsigned primary key auto_increment,
     name varchar(32) not null,
     description varchar(800),
     since timestamp);
+
 create table private_channel(
     id int(10) unsigned primary key, 
     foreign key(id) references channel(id));
@@ -133,6 +135,7 @@ CREATE TABLE `posts_comment` (
  CONSTRAINT `posts_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
+
 // user 
 CREATE TABLE `User`(
 	`ID` INT (10) PRIMARY KEY AUTO_INCREMENT,
@@ -146,5 +149,3 @@ CREATE TABLE `User`(
 	`number_of_reports` INT DEFAULT 0,
 	`total_reputation` INT DEFAULT 0)
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
