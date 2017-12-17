@@ -1,26 +1,41 @@
+// User
+
+CREATE TABLE `user`(
+	`ID` INT (10) unsigned PRIMARY KEY AUTO_INCREMENT,
+	`username` VARCHAR (20) UNIQUE NOT NULL,
+	`password` VARCHAR (20) NOT NULL,
+	`email` VARCHAR (50) UNIQUE NOT NULL,
+	`name` VARCHAR (50) NOT NULL,
+	`picture` VARCHAR(100),
+	`up_down_votes` INT DEFAULT 0,
+	`helpful_fags` INT unsigned DEFAULT 0,
+	`number_of_reports` INT unsigned DEFAULT 0,
+	`total_reputation` INT DEFAULT 0)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 //Channel
 
 create table channel(
-    ID int(10) primary key auto_increment,
+    ID int(10) unsigned primary key auto_increment,
     name varchar(32) not null,
     description varchar(140),
-    owner_id int(10),
+    userID int(10) unsigned,
     since timestamp,
-    foreign key (owner_id) references user(id))
+    foreign key (userID) references user(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //Private Channel
 
 create table private_channel(
-    ID int(10) primary key,
-    foreign key(id) references channel(id))
+    ID int(10) unsigned primary key,
+    foreign key(ID) references channel(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //Subscribes
 
 create table subscribes(
-    userID int(10) primary key,
-    channelID int(10),
+    userID int(10) unsigned primary key,
+    channelID int(10) unsigned,
     foreign key (userID) references user(ID),
     foreign key (channelID) references channel(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -28,24 +43,50 @@ ENGINE=InnoDB DEFAULT CHARSET=latin1;
 //Requests
 
 create table requests_follow(
-    userID int(10) primary key,
-    channelID int(10),
+    userID int(10) unsigned primary key,
+    channelID int(10) unsigned,
     isApproved boolean default false,
     foreign key (userID) references user(ID),
     foreign key (channelID) references private_channel(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-//bann
+// reports_channel
+CREATE TABLE `reports_channel`(
+   `reportID` INT (10) unsigned NOT NULL AUTO_INCREMENT,
+   `userID` INT (10) unsigned NOT NULL,
+   `channelID` INT (10) unsigned NOT NULL,
+   `type` INT NOT NULL,
+   PRIMARY KEY (`reportID`),
+   FOREIGN KEY (`userID`) REFERENCES user (`ID`),
+   FOREIGN KEY (`channelID`) REFERENCES channel (`ID`))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `bans` (
- `bannedUserID` int(10) NOT NULL AUTO_INCREMENT,
- `userID` int(10) NOT NULL,
- PRIMARY KEY (`bannedUserID`)
+//post
+CREATE TABLE `post` (
+ `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `title` varchar(800) NOT NULL,
+ `body` varchar(8000) NOT NULL,
+ `rating` int(11) DEFAULT '0',
+ `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ `userID` int(10) unsigned NOT NULL,
+ `channelID` int(10) unsigned NOT NULL,
+ PRIMARY KEY (`ID`),
+ FOREIGN KEY (`userID`) REFERENCES `user` (`ID`),
+ FOREIGN KEY (`channelID`) REFERENCES `channel` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+// reports_post
+CREATE TABLE `reports_post`(
+   `reportID` INT (10) unsigned NOT NULL AUTO_INCREMENT,
+   `userID` INT (10) unsigned NOT NULL,
+   `postID` INT (10) unsigned NOT NULL,
+   `type` INT NOT NULL,
+   PRIMARY KEY (`reportID`),
+   FOREIGN KEY (`userID`) REFERENCES user (`ID`),
+   FOREIGN KEY (`postID`) REFERENCES post (`ID`))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //comments
-
 CREATE TABLE `comment` (
  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
  `body` varchar(8000) NOT NULL,
@@ -53,9 +94,44 @@ CREATE TABLE `comment` (
  `rating` int(11) NOT NULL DEFAULT '0',
  `helpful_flag` int(10) NOT NULL DEFAULT '0',
  `time_posted` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
- PRIMARY KEY (`ID`)
+ `userID` int(10) unsigned NOT NULL,
+ `postID` int(10) unsigned NOT NULL,
+ PRIMARY KEY (`ID`),
+ FOREIGN KEY (`userID`) REFERENCES `user` (`ID`),
+ FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+// reports_comment
+CREATE TABLE `reports_comment`(
+   `reportID` INT (10) unsigned NOT NULL AUTO_INCREMENT,
+   `userID` INT (10) unsigned NOT NULL,
+   `commentID` INT (10) unsigned NOT NULL,
+   `type` INT NOT NULL,
+   PRIMARY KEY (`reportID`),
+   FOREIGN KEY (`userID`) REFERENCES user (`ID`),
+   FOREIGN KEY (`commentID`) REFERENCES comment (`ID`))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+//replies
+CREATE TABLE `replies` (
+ `childCommentID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `parentCommentID` int(10) unsigned NOT NULL,
+ PRIMARY KEY (`childCommentID`),
+ KEY `parentCommentID` (`parentCommentID`),
+ CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`childCommentID`) REFERENCES `comment` (`ID`),
+ CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`parentCommentID`) REFERENCES `comment` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+//bann - to be revised
+
+CREATE TABLE `bans` (
+ `bannedUserID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `userID` int(10) unsigned NOT NULL,
+ PRIMARY KEY (`bannedUserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //removeChannel
 
@@ -95,92 +171,3 @@ CREATE TABLE `remove_comment` (
  PRIMARY KEY (`commentID`),
  CONSTRAINT `remove_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
-//post
-CREATE TABLE `post` (
- `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
- `title` varchar(800) NOT NULL,
- `body` varchar(8000) NOT NULL,
- `rating` int(11) DEFAULT '0',
- `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
- PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-//has post
-CREATE TABLE `has_post` (
- `postID` int(10) unsigned NOT NULL,
- `channelID` int(11) unsigned NOT NULL,
- PRIMARY KEY (`postID`),
- KEY `channelID` (`channelID`),
- CONSTRAINT `has_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`),
- CONSTRAINT `has_post_ibfk_2` FOREIGN KEY (`channelID`) REFERENCES `channel` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-//post posts
-CREATE TABLE `posts_post` (
- `postID` int(10) unsigned NOT NULL,
- `userID` int(10) unsigned NOT NULL,
- PRIMARY KEY (`postID`),
- CONSTRAINT `posts_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-//replies
-CREATE TABLE `replies` (
- `childCommentID` int(10) unsigned NOT NULL AUTO_INCREMENT,
- `parentCommentID` int(10) unsigned NOT NULL,
- PRIMARY KEY (`childCommentID`),
- KEY `parentCommentID` (`parentCommentID`),
- CONSTRAINT `replies_ibfk_1` FOREIGN KEY (`childCommentID`) REFERENCES `comment` (`ID`),
- CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`parentCommentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-//has_comment
-CREATE TABLE `has_comment` (
- `commentID` int(10) unsigned NOT NULL,
- `postID` int(10) unsigned NOT NULL,
- PRIMARY KEY (`commentID`),
- KEY `postID` (`postID`),
- CONSTRAINT `has_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`),
- CONSTRAINT `has_comment_ibfk_2` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-//postComments
-CREATE TABLE `posts_comment` (
- `commentID` int(10) unsigned NOT NULL,
- `userID` int(10) NOT NULL,
- PRIMARY KEY (`commentID`),
- CONSTRAINT `posts_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
-CREATE TABLE `user`(
-	`ID` INT (10) PRIMARY KEY AUTO_INCREMENT,
-	`username` VARCHAR (20) UNIQUE NOT NULL,
-	`password` VARCHAR (20) NOT NULL,
-	`email` VARCHAR (50) UNIQUE NOT NULL,
-	`name` VARCHAR (50) NOT NULL,
-	`picture` VARCHAR(100),
-	`up_down_votes` INT DEFAULT 0,
-	`helpful_fags` INT unsigned DEFAULT 0,
-	`number_of_reports` INT unsigned DEFAULT 0,
-	`total_reputation` INT DEFAULT 0)
-ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-// reports_channel
-CREATE TABLE Reports_Channel(
-   userID INT (10) unsigned,
-   channelID INT (10) unsigned,
-   reportID INT (10) unsigned,
-   type INT NOT NULL,
-   PRIMARY KEY (reportID),
-   FOREIGN KEY (userID) REFERENCES user (ID),
-   FOREIGN KEY (channelID) REFERENCES channel (ID))
-ENGINE=InnoDB DEFAULT CHARSET=latin1;
