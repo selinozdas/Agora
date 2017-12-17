@@ -132,3 +132,19 @@ CREATE TABLE `posts_comment` (
  PRIMARY KEY (`commentID`),
  CONSTRAINT `posts_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+// user 
+CREATE TABLE `User`(
+	`ID` INT (10) PRIMARY KEY AUTO_INCREMENT,
+	`username` VARCHAR (20) UNIQUE NOT NULL,
+	`password` VARCHAR (20) NOT NULL,
+	`email` VARCHAR (50) UNIQUE NOT NULL,
+	`name` VARCHAR (50) NOT NULL,
+	`picture` VARCHAR(100),
+	`up_down_votes` INT DEFAULT 0,
+	`helpful_fags` INT DEFAULT 0,
+	`number_of_reports` INT DEFAULT 0,
+	`total_reputation` INT DEFAULT 0)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
