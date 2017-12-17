@@ -122,24 +122,24 @@ CREATE TABLE `replies` (
  CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`parentCommentID`) REFERENCES `comment` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
-
-//bann - to be revised
+//bann
 
 CREATE TABLE `bans` (
  `bannedUserID` int(10) unsigned NOT NULL AUTO_INCREMENT,
  `userID` int(10) unsigned NOT NULL,
- PRIMARY KEY (`bannedUserID`)
+ PRIMARY KEY (`bannedUserID`),
+ FOREIGN KEY (`bannedUserID`) REFERENCES user (`ID`),
+ FOREIGN KEY (`userID`) REFERENCES user (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 //removeChannel
 
 CREATE TABLE `remove_channel` (
  `channelID` int(10) unsigned NOT NULL,
- `userID` int(10) NOT NULL,
+ `userID` int(10) unsigned NOT NULL,
  PRIMARY KEY (`channelID`),
- CONSTRAINT `remove_channel_ibfk_1` FOREIGN KEY (`channelID`) REFERENCES `channel` (`ID`)
+ CONSTRAINT `remove_channel_ibfk_1` FOREIGN KEY (`channelID`) REFERENCES `channel` (`ID`),
+ CONSTRAINT `remove_channel_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -147,27 +147,19 @@ CREATE TABLE `remove_channel` (
 
 CREATE TABLE `remove_post` (
  `postID` int(10) unsigned NOT NULL,
- `userID` int(10) NOT NULL,
+ `userID` int(10)unsigned NOT NULL,
  PRIMARY KEY (`postID`),
- CONSTRAINT `remove_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`)
+ CONSTRAINT `remove_post_ibfk_1` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`),
+ CONSTRAINT `remove_post_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
-//remove Channel
+//remove comment
 CREATE TABLE `remove_comment` (
  `commentID` int(10) unsigned NOT NULL AUTO_INCREMENT,
- `userID` int(10) NOT NULL,
+ `userID` int(10) unsigned NOT NULL,
  PRIMARY KEY (`commentID`),
- CONSTRAINT `remove_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-//remove commnent
-
-CREATE TABLE `remove_comment` (
- `commentID` int(10) unsigned NOT NULL AUTO_INCREMENT,
- `userID` int(10) NOT NULL,
- PRIMARY KEY (`commentID`),
- CONSTRAINT `remove_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`)
+ CONSTRAINT `remove_comment_ibfk_1` FOREIGN KEY (`commentID`) REFERENCES `comment` (`ID`),
+ CONSTRAINT `remove_comment_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
