@@ -1,15 +1,35 @@
-// Channel
+//Channel
+
 create table channel(
-    id int(10) unsigned primary key auto_increment,
+    id int(10) primary key auto_increment,
     name varchar(32) not null,
-    description varchar(800),
-    since timestamp);
+    description varchar(140),
+    owner_id int(10), 
+    since timestamp,
+    foreign key (owner_id) references user(id));
+    
+//Private Channel
 
 create table private_channel(
-    id int(10) unsigned primary key, 
+    id int(10) primary key, 
     foreign key(id) references channel(id));
-    
 
+//Subscribes 
+
+create table subscribes(
+    u_id int(10) primary key,
+    c_id int(10),
+    foreign key (u_id) references user(id),
+    foreign key (c_id) references channel(id));
+
+//Requests
+
+create table requests_follow(
+    u_id int(10) primary key,
+    c_id int(10),
+    isApproved boolean default false,
+    foreign key (u_id) references user(id),
+    foreign key (c_id) references private_channel(id));
 
 //bann
 
@@ -137,7 +157,7 @@ CREATE TABLE `posts_comment` (
 
 
 // user 
-CREATE TABLE `User`(
+CREATE TABLE `user`(
 	`ID` INT (10) PRIMARY KEY AUTO_INCREMENT,
 	`username` VARCHAR (20) UNIQUE NOT NULL,
 	`password` VARCHAR (20) NOT NULL,
