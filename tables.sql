@@ -1,7 +1,7 @@
 //Channel
 
 create table channel(
-    id int(10) primary key auto_increment,
+    ID int(10) primary key auto_increment,
     name varchar(32) not null,
     description varchar(140),
     owner_id int(10),
@@ -11,25 +11,25 @@ create table channel(
 //Private Channel
 
 create table private_channel(
-    id int(10) primary key,
+    ID int(10) primary key,
     foreign key(id) references channel(id));
 
 //Subscribes
 
 create table subscribes(
-    u_id int(10) primary key,
-    c_id int(10),
-    foreign key (u_id) references user(id),
-    foreign key (c_id) references channel(id));
+    userID int(10) primary key,
+    channelID int(10),
+    foreign key (userID) references user(ID),
+    foreign key (channelID) references channel(ID));
 
 //Requests
 
 create table requests_follow(
-    u_id int(10) primary key,
-    c_id int(10),
+    userID int(10) primary key,
+    channelID int(10),
     isApproved boolean default false,
-    foreign key (u_id) references user(id),
-    foreign key (c_id) references private_channel(id));
+    foreign key (userID) references user(ID),
+    foreign key (channelID) references private_channel(ID));
 
 //bann
 
@@ -156,15 +156,9 @@ CREATE TABLE `posts_comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
-<<<<<<< HEAD
-// user
-CREATE TABLE `User`(
-	`ID` INT (10) unsigned PRIMARY KEY AUTO_INCREMENT,
-=======
-// user
+
 CREATE TABLE `user`(
 	`ID` INT (10) PRIMARY KEY AUTO_INCREMENT,
->>>>>>> 5184c7efb7325d95029a36af8eb93ecff41fd0b2
 	`username` VARCHAR (20) UNIQUE NOT NULL,
 	`password` VARCHAR (20) NOT NULL,
 	`email` VARCHAR (50) UNIQUE NOT NULL,
