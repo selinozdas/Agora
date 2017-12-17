@@ -1,14 +1,16 @@
 // Channel
 create table channel(
-    id int(10) unsigned primary key auto_increment,
+    ID int(10) unsigned primary key auto_increment,
     name varchar(32) not null,
     description varchar(800),
-    since timestamp);
+    since timestamp)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 create table private_channel(
-    id int(10) unsigned primary key, 
-    foreign key(id) references channel(id));
-    
+    ID int(10) unsigned primary key,
+    foreign key(id) references channel(ID))
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 //bann
@@ -39,7 +41,7 @@ CREATE TABLE `remove_channel` (
  `channelID` int(10) unsigned NOT NULL,
  `userID` int(10) NOT NULL,
  PRIMARY KEY (`channelID`),
- CONSTRAINT `remove_channel_ibfk_1` FOREIGN KEY (`channelID`) REFERENCES `channel` (`id`)
+ CONSTRAINT `remove_channel_ibfk_1` FOREIGN KEY (`channelID`) REFERENCES `channel` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
@@ -136,16 +138,27 @@ CREATE TABLE `posts_comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
-// user 
+// user
 CREATE TABLE `User`(
-	`ID` INT (10) PRIMARY KEY AUTO_INCREMENT,
+	`ID` INT (10) unsigned PRIMARY KEY AUTO_INCREMENT,
 	`username` VARCHAR (20) UNIQUE NOT NULL,
 	`password` VARCHAR (20) NOT NULL,
 	`email` VARCHAR (50) UNIQUE NOT NULL,
 	`name` VARCHAR (50) NOT NULL,
 	`picture` VARCHAR(100),
 	`up_down_votes` INT DEFAULT 0,
-	`helpful_fags` INT DEFAULT 0,
-	`number_of_reports` INT DEFAULT 0,
+	`helpful_fags` INT unsigned DEFAULT 0,
+	`number_of_reports` INT unsigned DEFAULT 0,
 	`total_reputation` INT DEFAULT 0)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+// reports_channel
+CREATE TABLE Reports_Channel(
+   userID INT (10) unsigned,
+   channelID INT (10) unsigned,
+   reportID INT (10) unsigned,
+   type INT NOT NULL,
+   PRIMARY KEY (reportID),
+   FOREIGN KEY (userID) REFERENCES user (ID),
+   FOREIGN KEY (channelID) REFERENCES channel (ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
