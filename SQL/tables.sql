@@ -8,7 +8,7 @@ CREATE TABLE `user`(
 	`firstName` VARCHAR (20) NOT NULL,
    `lastName` VARCHAR (20) NOT NULL,
 	`picture` VARCHAR(100),
-   `isAdmin` BOOLEAN NOT NULL,
+   `isAdmin` BOOLEAN NOT NULL DEFAULT 0,
 	`up_down_votes` INT DEFAULT 0,
 	`helpful_fags` INT unsigned DEFAULT 0,
 	`number_of_reports` INT unsigned DEFAULT 0,
