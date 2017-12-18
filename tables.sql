@@ -20,7 +20,7 @@ ENGINE=InnoDB DEFAULT CHARSET=latin1;
 create table channel(
     ID int(10) unsigned primary key auto_increment,
     name varchar(32) not null,
-    description varchar(140),
+    description varchar(500),
     userID int(10) unsigned,
     since timestamp,
     foreign key (userID) references user(ID))
