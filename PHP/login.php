@@ -15,7 +15,6 @@
 <html>
 <head>
 	<title>Login</title>
-	<link type='text/css' rel='stylesheet' href='login_stylesheet.css'>
 </head>
 <body>
 	<form id = "login" action="loginCheck.php" method="post">

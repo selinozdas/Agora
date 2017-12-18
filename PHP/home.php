@@ -6,8 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
-	<link type='text/css' rel='stylesheet' href='login_stylesheet.css'>
+	<title>Home</title>
 </head>
 <body>
    <?PHP if (isset($_SESSION['username'])){?>
