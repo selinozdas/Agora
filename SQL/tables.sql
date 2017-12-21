@@ -8,7 +8,7 @@ CREATE TABLE `user`(
 	`firstName` VARCHAR (20) NOT NULL,
    `lastName` VARCHAR (20) NOT NULL,
 	`picture` VARCHAR(100),
-   `isAdmin` BOOLEAN NOT NULL DEFAULT 0,
+   `isAdmin` BOOLEAN NOT NULL,
 	`up_down_votes` INT DEFAULT 0,
 	`helpful_fags` INT unsigned DEFAULT 0,
 	`number_of_reports` INT unsigned DEFAULT 0,
@@ -22,7 +22,7 @@ create table channel(
     name varchar(32) not null,
     description varchar(500),
     userID int(10) unsigned,
-    since timestamp,
+    since timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     foreign key (userID) references user(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -99,7 +99,7 @@ CREATE TABLE `comment` (
  `since` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  `rating` int(11) NOT NULL DEFAULT '0',
  `helpful_flag` int(10) NOT NULL DEFAULT '0',
- `time_posted` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+ `time_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  `userID` int(10) unsigned NOT NULL,
  `postID` int(10) unsigned NOT NULL,
  PRIMARY KEY (`ID`),
