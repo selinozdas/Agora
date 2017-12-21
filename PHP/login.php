@@ -1,14 +1,5 @@
 <?PHP
    session_start();
-/*
-   if (isset($_SESSION['username'])){
-      echo "username: ", $_SESSION['username'];
-
-   }
-   else {
-      echo "no username";
-   }
-*/
 ?>
 
 <!DOCTYPE html>

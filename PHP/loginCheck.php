@@ -1,30 +1,26 @@
 <?PHP
+   include ("connection.php");
    session_start();
 
    $uname = $_POST['username'];
    $psw = $_POST['password'];
 
-   $servername='localhost:3307';
-   $username='root';
-   $password='';
-   $dbname='agora';
+   $query = 'SELECT ID, username, password FROM user WHERE username LIKE \'' . $uname . '\' AND password LIKE \'' . $psw . '\';';
+   $result = mysqli_query($con , $query);
 
-   $db_handle = @mysql_connect($servername,$username, $password) OR DIE ('Unable to connect to database! Please try again later.');
-   @mysql_select_db($dbname);
-
-   $query = 'SELECT username, password FROM user WHERE username LIKE \'' . $uname . '\' AND password LIKE \'' . $psw . '\';';
-   $result = mysql_query($query);
-
-   if($result) {
-       //print "Logged In";
-       $_SESSION['username']=$uname;
-       $_SESSION['password']=$psw;
-       header('Location: home.php');
+   while($row = mysqli_fetch_array($result)) {
+      //echo $row['username'];
+      if($row) {
+          print "Logged In";
+          $_SESSION['username']=$uname;
+          $_SESSION['password']=$psw;
+          $_SESSION['id']=$row['ID'];
+          header('Location: home.php');
+      }
    }
-   else {
-      print "Wrong username or password";
-      mysql_close($db_handle);
-   }
+
+   print "Wrong username or password";
+   mysqli_close($con);
 
 
 ?>

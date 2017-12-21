@@ -1,5 +1,5 @@
 <?PHP
-   include_once 'server.php';
+   session_start();
 ?>
 
 
