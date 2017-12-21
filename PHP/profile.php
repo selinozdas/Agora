@@ -1,4 +1,6 @@
-<?php session_start();
+<?php 
+include_once 'server.php';
+session_start();
 //check whether the user has logged in or not
 $logged_in = false;
 if (isset($_SESSION['username'])!="")
