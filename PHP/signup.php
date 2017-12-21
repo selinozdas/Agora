@@ -21,7 +21,7 @@
              print "Logged In";
              $_SESSION['username']=$uname;
              $_SESSION['password']=$psw;
-             $_SESSION['id']=$row['ID'];
+             $_SESSION['ID']=$row['ID'];
              header('Location: home.php');
          }
       }

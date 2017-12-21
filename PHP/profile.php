@@ -1,5 +1,5 @@
-<?php 
-include_once 'server.php';
+<?php
+include ("connection.php");
 session_start();
 //check whether the user has logged in or not
 $logged_in = false;
@@ -9,7 +9,7 @@ if (isset($_SESSION['username'])!="")
 }
 //fetch user
 $u_name = $_REQUEST['username'];
-$query_1 = mysqli_query($dbname, "select * from user where username = $u_name");
+$query_1 = mysqli_query($con, "select * from user where username = $u_name");
 $row = mysql_fetch_array($query_1);
 $name = "{$row['firstName']} {$row['lastName']}";
 $email = "{$row['email']}";
