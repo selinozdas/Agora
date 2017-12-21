@@ -41,7 +41,7 @@ $imgpath = "{$row['picture']}";
         <input type="Submit" value="Create Channel" name="cchannelbtn">
     </form>
     <form id="delete_channel" action="deleteChannel.php" method="post">
-        <input type="Submit" value="Delete Channel" name="cchannelbtn">
+        <input type="Submit" value="Delete Channel" name="dchannelbtn">
     </form>
 </body>
 
