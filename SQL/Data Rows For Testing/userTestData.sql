@@ -214,3 +214,16 @@ INSERT INTO user VALUES(
    '0',
    '0',
    '0');
+   INSERT INTO user VALUES(
+      NULL, -- ID
+      'water',    -- username
+      'water', -- password
+      'water@gmail.com',
+      'Water',
+      'Bread',
+      '',
+      '0', -- isAdmin
+      '0',
+      '0',
+      '0',
+      '0');
