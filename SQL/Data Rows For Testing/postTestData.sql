@@ -257,3 +257,17 @@ INSERT INTO post VALUES(
    CURRENT_TIMESTAMP,
    "3000000008",
    "500000002");
+
+INSERT INTO `post` (`ID`, `title`, `body`, `rating`, `time_posted`, `userID`, `channelID`) VALUES (NULL, 'The Grand Tour Review on V8 Engine', '\r\nThe once outlast topGear host tell therir review on the neww Volkswagen V8 engine. They suggest that it is the best engine ever made', '0', CURRENT_TIMESTAMP, '3000000001', '500000004');
+
+
+INSERT INTO `post` (`ID`, `title`, `body`, `rating`, `time_posted`, `userID`, `channelID`) VALUES (NULL, 'Is it necessary for a car to have an engine?', 'Sooo hey guys the thing i wanna impress my boyfriend....but i don\'t know squat about cars. So my question is is it necessary for a car to have an enginer... OMG this engine is too heavy XOXOXO to all my followers', '0', CURRENT_TIMESTAMP, '1000000000', '500000004');
+
+INSERT INTO `post` (`ID`, `title`, `body`, `rating`, `time_posted`, `userID`, `channelID`) VALUES (NULL, 'The new tesla  is the think of the future', 'I would like to buy a tesla but i am a noob in cars.Should i buy it', '0', CURRENT_TIMESTAMP, '2000000005', '500000004');
+
+
+
+
+INSERT INTO `post` (`ID`, `title`, `body`, `rating`, `time_posted`, `userID`, `channelID`) VALUES (NULL, 'I love persian cat', 'I love persian cas soo much , like they feel like royalty . I would really appreciate if someone can help me buy a cat', '0', CURRENT_TIMESTAMP, '1000000002', '500000001');
+
+INSERT INTO `post` (`ID`, `title`, `body`, `rating`, `time_posted`, `userID`, `channelID`) VALUES (NULL, 'NEED HELP', 'GUYSSS I AM SADDD SEND ME CAT VIDEOSSS PLSSSS', '0', CURRENT_TIMESTAMP, '2000000004', '500000001');
