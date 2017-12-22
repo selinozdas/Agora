@@ -148,3 +148,69 @@ INSERT INTO user VALUES(
  '0',
  '0',
  '0');
+
+INSERT INTO user VALUES(
+   NULL, -- ID
+   'kukushka',    -- username
+   'kukushka', -- password
+   'kukushka@gmail.com',
+   'Kukushka',
+   'Prakushka',
+   '',
+   '0', -- isAdmin
+   '0',
+   '0',
+   '0',
+   '0');
+INSERT INTO user VALUES(
+   NULL, -- ID
+   'dana',    -- username
+   'dana', -- password
+   'dana@gmail.com',
+   'Dana',
+   'Izbasarova',
+   '',
+   '0', -- isAdmin
+   '0',
+   '0',
+   '0',
+   '0');
+INSERT INTO user VALUES(
+   NULL, -- ID
+   'raza',    -- username
+   'raza', -- password
+   'raza@gmail.com',
+   'Raza',
+   'Faraz',
+   '',
+   '1', -- isAdmin
+   '0',
+   '0',
+   '0',
+   '0');
+INSERT INTO user VALUES(
+   NULL, -- ID
+   'geek',    -- username
+   'geek', -- password
+   'geek@gmail.com',
+   'Lily',
+   'Asian',
+   '',
+   '0', -- isAdmin
+   '0',
+   '0',
+   '0',
+   '0');
+INSERT INTO user VALUES(
+   NULL, -- ID
+   'chee',    -- username
+   'chee', -- password
+   'chee@gmail.com',
+   'Chee',
+   'Lo',
+   '',
+   '1', -- isAdmin
+   '0',
+   '0',
+   '0',
+   '0');
