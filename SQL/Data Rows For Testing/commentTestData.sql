@@ -16,5 +16,37 @@ CREATE TABLE `comment` (
 
 INSERT INTO post VALUES(
    NULL,
-   
-);
+   'Your post is stupid',
+   CURRENT_TIMESTAMP,
+   '0',
+   '0',
+   CURRENT_TIMESTAMP,
+   '3000000006',
+   '17');
+INSERT INTO post VALUES(
+   NULL,
+   'You are an awesome human being, so don\'t worry',
+   CURRENT_TIMESTAMP,
+   '0',
+   '0',
+   CURRENT_TIMESTAMP,
+   '3000000006',
+   '28');
+INSERT INTO post VALUES(
+   NULL,
+   'Life is wonderful, don\'t mess it up. Cuz you are of those who can!',
+   CURRENT_TIMESTAMP,
+   '0',
+   '0',
+   CURRENT_TIMESTAMP,
+   '3000000006',
+   '45');
+INSERT INTO post VALUES(
+   NULL,
+   'Your post is stupid',
+   CURRENT_TIMESTAMP,
+   '0',
+   '0',
+   CURRENT_TIMESTAMP,
+   '3000000006',
+   '17');
