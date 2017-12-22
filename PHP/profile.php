@@ -24,7 +24,7 @@ $imgpath = $row['picture'];
     <div class="container">
         <div class="user_data">
         
-        Name = <?php echo $name ?><br>
+        Name = <?php echo $name ?> <?php echo $surname ?><br>
         Username = <?php echo $u_name?><br>
         Password = **********<br>
         E-Mail = <?php echo $email ?><br>
