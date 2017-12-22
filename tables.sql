@@ -36,8 +36,9 @@ ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- Subscribes
 
 create table subscribes(
-    userID int(10) unsigned primary key,
+    userID int(10) unsigned,
     channelID int(10) unsigned,
+    primary key(userID, channelID),
     foreign key (userID) references user(ID),
     foreign key (channelID) references channel(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
