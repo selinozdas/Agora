@@ -43,7 +43,7 @@ INSERT INTO post VALUES(
    '45');
 INSERT INTO post VALUES(
    NULL,
-   'Your post is stupid',
+   'This is funny',
    CURRENT_TIMESTAMP,
    '0',
    '0',
