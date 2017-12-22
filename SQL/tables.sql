@@ -46,9 +46,10 @@ ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- Requests
 
 create table requests_follow(
-    userID int(10) unsigned primary key,
+    userID int(10) unsigned,
     channelID int(10) unsigned,
     isApproved boolean default false,
+    primary key (userID, channelID),
     foreign key (userID) references user(ID),
     foreign key (channelID) references private_channel(ID))
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
