@@ -1,11 +1,11 @@
 <?php
 
-//include('server.php');
-include ("connection.php");
+include('server.php');
+
 $postID = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    echo "Fuck everyone";
     if (isset($_POST['delete_post_button'])) {
         $postID = $id;
         $rowToDelete = intval($_POST[`post`.`ID`]);

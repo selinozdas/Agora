@@ -28,11 +28,3 @@
       </table>
    </body>
 </html>
-<script>
-/*
-$(".channelItem").click(function(){
-        //location.href = $(this).find("a").attr("href");
-        print $(this).find("a");
-});
-*/
-</script>
