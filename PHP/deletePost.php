@@ -1,7 +1,7 @@
 <?php
 
-include('server.php');
-
+//include('server.php');
+include('connection.php');
 $postID = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
