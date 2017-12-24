@@ -9,7 +9,7 @@
       $lastName = $_POST['lastName'];
       $email = $_POST['email'];
 
-      $query = 'INSERT INTO user VALUES( NULL, \'' . $uname . '\', \'' . $psw . '\' , \'' . $email . '\', \'' . $firstName . '\', \'' . $lastName . '\', \'\', \'0\', \'0\', \'0\', \'0\', \'0\');';
+      $query = 'INSERT INTO user VALUES( NULL, \'' . $uname . '\', \'' . $psw . '\' , \'' . $email . '\', \'' . $firstName . '\', \'' . $lastName . '\', \'https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-512.png\', \'0\', \'0\', \'0\', \'0\', \'0\');';
       $result = mysqli_query($con, $query);
 
       $query2 = 'SELECT ID, username, password FROM user WHERE username LIKE \'' . $uname . '\' AND password LIKE \'' . $psw . '\';';
