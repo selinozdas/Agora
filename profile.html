@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>Profile</title>
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+</head>
+
+<body background="images/welcome.png">
+  <div id="page">
+    <div id="nav" style= "text-align: right">
+      <ul>
+        <li id = "logo"><a href="index.html" id="logoLink">Agora.</a></h1>
+        </li>
+        <li><a href="home.html">home</a></li>
+        &nbsp; 
+        <li><a href="channels.html">channels</a></li>
+        &nbsp;
+        <li><a href="login.html">login</a></li>
+        &nbsp; 
+        <li><a href="search.html">search</a></li>
+        &nbsp; 
+      </ul> 
+    </div>
+  <div id="w">
+    <div id="content" class="clearfix">
+      <div id="userphoto"><img src="images/avatar.jpg" alt="default avatar"></div>
+      <h1>Spencer Reid</h1>
+
+      <nav id="profiletabs">
+        <ul class="clearfix">
+          <li><a href=#details class="sel">Details</a></li>
+          <li><a href="#bio">Bio</a></li>
+          <li><a href="#activity">Activity</a></li>
+          <li><a href="#friends">Friends</a></li>
+          <li><a href="#settings">Settings</a></li>
+        </ul>
+      </nav>
+      
+      <section id="details">
+          <p>name: Spencer Reid</p>
+          <p>username: drreid</p>
+          <p>email: drreid@gmail.com</p>
+          <p>password: *****</p>
+          <p>reputation: 50,000 points</p>
+          <p>helpful flags: 4000</p>
+      </section>
+      <section id="bio">
+        <p> My name is Spencer Reid. I work for the FBI's Behavioral Analysis Unit.</p>
+      </section>
+      
+      <section id="activity" class="hidden">
+        <p>Most recent actions:</p>
+        
+        <p class="activity">@10:15PM - Submitted a news article</p>
+        
+        <p class="activity">@9:50PM - Submitted a news article</p>
+        
+        <p class="activity">@8:15PM - Posted a comment</p>
+        
+        <p class="activity">@4:30PM - Added <strong>agenthotchner</strong> as a friend</p>
+        
+        <p class="activity">@12:30PM - Submitted a news article</p>
+      </section>
+      
+      <section id="friends" class="hidden">
+        <p>Friends list:</p>
+        
+        <ul id="friendslist" class="clearfix" style = "font-size:12px; font-family: Courier; color:#595959">
+          <li ><a href="#"><img src="images/avatar.png" width="22" height="22"> garciababygirl</a></li>
+          <li><a href="#"><img src="images/avatar.png" width="22" height="22"> agentjj</a></li>
+          <li><a href="#"><img src="images/avatar.png" width="22" height="22"> morgan</a></li>
+        </ul>
+      </section>
+      
+      <section id="settings" class="hidden">
+        <p>Edit your user settings:</p>
+        
+        <p class="setting"><span>name <img src="images/edit.png" alt="*Edit*"></span>Spencer Reid</p>
+        
+        <p class="setting"><span>username <img src="images/edit.png" alt="*Edit*"></span> drreid</p>
+        
+        <p class="setting"><span>email <img src="images/edit.png" alt="*Edit*"></span> drreid@gmail.com</p>
+        
+        <p class="setting"><span>password <img src="images/edit.png" alt="*Edit*"></span> *****</p>
+        
+        <p class="setting"><span>confirm password <img src="images/edit.png" alt="*Edit*"></span> *****</p>
+      </section>
+    </div><!-- @end #content -->
+  </div><!-- @end #w -->
+  <div id="footer">
+        <ul>
+        <p><a href="about.html">about</a>
+        &nbsp; &nbsp; 
+        &nbsp; &nbsp; 
+        <a href="help.html">help</a>
+        &nbsp; &nbsp;
+        &nbsp; &nbsp; 
+        <a href="social.html">social</a>
+        &nbsp; &nbsp; 
+        &nbsp; &nbsp;
+        <a href="faq.html">faq</a></p>
+        &nbsp; &nbsp; 
+        &nbsp; &nbsp;
+      </ul>
+    </div>
+<script type="text/javascript">
+$(function(){
+  $('#profiletabs ul li a').on('click', function(e){
+    e.preventDefault();
+    var newcontent = $(this).attr('href');
+    
+    $('#profiletabs ul li a').removeClass('sel');
+    $(this).addClass('sel');
+    
+    $('#content section').each(function(){
+      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+    }); 
+    
+    $(newcontent).removeClass('hidden');
+  });
+});
+</script>
+</body>
+</html>
