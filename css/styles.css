@@ -234,7 +234,7 @@ a:hover { text-decoration: underline; }
   padding: 8px 11px;
   font-size: 1.2em;
   font-weight: bold;
-  background: #595959;
+  background: #d3d3d3;
   color: #595959;
   margin-right: 7px;
   border: 1px solid #595959;
@@ -247,7 +247,7 @@ a:hover { text-decoration: underline; }
 }
 #profiletabs ul li a:hover {
   text-decoration: none;
-  background: #595959;
+  background: #eee8f3;
   color: #565656;
 }
 
