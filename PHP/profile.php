@@ -1,7 +1,9 @@
 <?php
 include ("connection.php");
 session_start();
-//include_once ('loginCheck.php');
+if(!$_SESSION['username']){
+    header("Location: home.php");
+}
 //fetch user
 $u_name = $_SESSION['username'];
 $query = 'SELECT * FROM user WHERE username LIKE \'' . $u_name . '\';';
@@ -35,18 +37,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['settingsbtn'])
         Reputation = <?php echo $rep?> points<br>
         Helpful Flags = <?php echo $flags ?>
         <br>
-        <img src='{$imgpath}' alt='Profile Picture' width='400' height='400'>   
+        <img border="0" alt="User" src="<?php echo $imgpath ?>" width="100" height="100">
         <br>
         <input type="Submit" value="Settings" name="settingsbtn">
         </div>
     </div>
     </form>
-    <!--< form id="create_channel" action="createChannel.php" method="post">
-        <input type="Submit" value="Create Channel" name="cchannelbtn">
-    </form>
-    <form id="delete_channel" action="deleteChannel.php" method="post">
-        <input type="Submit" value="Delete Channel" name="dchannelbtn">
-    </form> -->
 </body>
 
 </html>

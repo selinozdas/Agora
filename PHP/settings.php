@@ -1,6 +1,9 @@
 <?php 
 include_once ('connection.php');
 session_start();
+if(!$_SESSION['username']){
+    header("Location: home.php");
+}
 if (isset($_SESSION['username'])!="")
 {
     $u_name = $_SESSION['username'];
