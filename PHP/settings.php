@@ -18,6 +18,14 @@ if (isset($_SESSION['username'])!="")
     $imgpath = $row['picture'];
     $pass = $row['password'];
 }
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['remove'])
+{
+    $qimgpath = 'UPDATE user SET picture = \'https://cdn1.iconfinder.com/data/icons/business-charts/512/customer-512.png\' WHERE username LIKE \'' . $u_name . '\' ;';
+    mysqli_query($con , $qimgpath);
+    $message = "Profile picture has been removed.";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+    header("Refresh:0");
+}
 if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['apply'])
 {
     $match=true;
@@ -35,6 +43,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['apply'])
     {
         $qEmail = 'UPDATE user SET email = \'' . $_POST['email'] . '\' WHERE username LIKE \'' . $u_name . '\' ;';
         mysqli_query($con , $qEmail);
+    }
+    if($_POST['image'] != "" && $_POST['image'] != $imgpath)
+    {
+        $qimgpath = 'UPDATE user SET picture = \'' . $_POST['image'] . '\' WHERE username LIKE \'' . $u_name . '\' ;';
+        mysqli_query($con , $qimgpath);
     }
     if($_POST['passwd'] != "" && $_POST['passwd'] != $pass)
     {
@@ -78,6 +91,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['delete'])
                <br>
                <label class = "input_label">Last Name</label>
     				<input class = "input_text_box" type="text" placeholder="Enter Last Name" name="lastName">
+               <br>
+               <label class = "input_label">Profile Picture</label>
+               <input class = "input_text_box" type="text" placeholder="Enter Image URL" name="image">
+               <input type="Submit" value="Remove" name="remove"> 
                <br>
                <label class = "input_label">E-mail</label>
     				<input class = "input_text_box" type="email" multiple placeholder="Enter E-mail" name="email">
