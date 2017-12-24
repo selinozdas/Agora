@@ -1,3 +1,8 @@
+<html>
+    <link rel="stylesheet" href="../CSS/style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</html>
 <?php
 
     function setComments($con , $postID , $userID)
@@ -24,14 +29,33 @@
         $getCommentsSql =  "SELECT * FROM `comment` WHERE `postID` = '".$post_ID."' ";
         $query2= mysqli_query($con , $getCommentsSql);
 
+        $getUserSql = "SELECT 'username' FROM 'post' WHERE `postID` = '".$post_ID."' LIMIT 1";
+        $userNameQuery = mysqli_query($con ,$getUserSql);
+
         if( !empty($query2))
         {
             while($row = mysqli_fetch_array($query2))
             {
-                echo "<div><p>" ;
+                echo
+                "
+                <div class = 'comment_area'><p>
+                ". $row['time_posted'] ."<br>
+                ".$row['body']."<br>
+
+                <a style = 'color: #2E8B57' href = '/'><i class='fa fa-arrow-up'></i></a> 
+                <a style = 'color: #2E8B57' href = '/'>90k</a>
+                <a style = 'color: #2E8B57' href = '/'><i class='fa fa-arrow-down'></i></a>&nbsp;
+                <a style='font-size: 12px; color: #0080ff'>share</a> &nbsp; 
+                <a style='font-size: 12px; color: #990000'>report</a>
+                </div>
+                
+                ";
+                
+                /*echo "<div class = 'comment_area'><p>" ;
                 echo $row['time_posted'] ."<br>";
+                echo "By : ".$userName ."<br>";
                 echo $row['body'] ."<br>";
-                echo "</div>";
+                echo "</div>";*/
             }
         }   
 
