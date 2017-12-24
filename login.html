@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"> 
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="loginStyle.css" type="text/css" />
+   </head>
+   
+   <body>
+   	  <div id="page">
+		<div id="nav">
+			<ul>
+				<li id = "logo"><a href="index.html" id="logoLink">Agora.</a></h1>
+				</li>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+				<li><a href="home.html">home</a></li>
+				&nbsp; 
+				<li><a href="channels.html">channels</a></li>
+				&nbsp;
+				<li><a href="login.html">login</a></li>
+				&nbsp; 
+				<li><a href="search.html">search</a></li>
+				&nbsp; 
+			</ul>	
+		</div>
+      <div align = "center">
+         <div style = "width:350px; margin-top: 100px; border: solid 5px #7e8d85; " align = "center">
+            <div style = "background-color:#7e8d85; font-family: Courier; font-size: 100%"><b>LOGIN</b></div>
+				
+            <div style = "margin:20px; font-family: Courier; font-size: 100%">
+               
+               <form class="form-signin" action="index.php" method="post" >
+                  <label>username:</label><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>password:</label><input type = "password" name = "password" class = "box" /><br/><br />
+                  <input type = "submit" value = "LOGIN "/><br />
+                  <div style=" font-size: 12px; color: red; text-align: right"><a href="register.html">register</a></div>
+               </form>
+               
+               <div style = "font-size:12px; font-family: Courier; color:#7e8d85; margin-top:20px"><?php echo $error; ?></div>
+					
+            </div>
+				
+         </div>
+		
+      </div>
+      <div id="footer">
+		    <ul>
+				<p><a href="about.html">about</a>
+				&nbsp; &nbsp; 
+				&nbsp; &nbsp; 
+				<a href="help.html">help</a>
+				&nbsp; &nbsp;
+				&nbsp; &nbsp; 
+				<a href="social.html">social</a>
+				&nbsp; &nbsp; 
+				&nbsp; &nbsp;
+				<a href="faq.html">faq</a></p>
+				&nbsp; &nbsp; 
+				&nbsp; &nbsp;
+			</ul>
+		</div>
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Include all compiled plugins or individual files -->
+      <script src="js/bootstrap.min.js"></script>
+   </body>
+</html>
