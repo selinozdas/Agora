@@ -7,7 +7,7 @@ CREATE TABLE `user`(
 	`email` VARCHAR (50) UNIQUE NOT NULL,
 	`firstName` VARCHAR (20) NOT NULL,
    `lastName` VARCHAR (20) NOT NULL,
-	`picture` VARCHAR(100),
+	`picture` VARCHAR(300),
    `isAdmin` BOOLEAN NOT NULL,
 	`up_down_votes` INT DEFAULT 0,
 	`helpful_fags` INT unsigned DEFAULT 0,
