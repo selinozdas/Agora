@@ -13,6 +13,10 @@ $email = $row['email'];
 $rep = $row['total_reputation'];
 $flags = $row['helpful_fags'];
 $imgpath = $row['picture'];
+if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST['settingsbtn'])
+{
+    header("Location: settings.php");
+}
 ?>
 
 <!DOCTYPE <html>
@@ -20,7 +24,7 @@ $imgpath = $row['picture'];
     <title>$name</title>
 </head>
 <body>
-    <div <form action="profile.php">
+    <form id="profile" action="profile.php" method="post">
     <div class="container">
         <div class="user_data">
         
@@ -30,20 +34,19 @@ $imgpath = $row['picture'];
         E-Mail = <?php echo $email ?><br>
         Reputation = <?php echo $rep?> points<br>
         Helpful Flags = <?php echo $flags ?>
-        
-        <img src='{$imgpath}' alt='Profile Picture' width='400' height='400'>
+        <br>
+        <img src='{$imgpath}' alt='Profile Picture' width='400' height='400'>   
+        <br>
+        <input type="Submit" value="Settings" name="settingsbtn">
         </div>
     </div>
     </form>
-    <form id="settings" action="settings.php" method="post">
-        <input type="Submit" value="Settings" name="settingsbtn">
-    </form>
-    <form id="create_channel" action="createChannel.php" method="post">
+    <!--< form id="create_channel" action="createChannel.php" method="post">
         <input type="Submit" value="Create Channel" name="cchannelbtn">
     </form>
     <form id="delete_channel" action="deleteChannel.php" method="post">
         <input type="Submit" value="Delete Channel" name="dchannelbtn">
-    </form>
+    </form> -->
 </body>
 
 </html>
