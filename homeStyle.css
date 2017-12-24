@@ -28,6 +28,7 @@ dl {
 }
 dd {
     display: list-item;
+    margin-left: 0;
 	font-size: 12px;
 	font-family: Verdana;
     }
