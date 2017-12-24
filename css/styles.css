@@ -17,7 +17,7 @@ html { overflow-y: scroll; }
 body { 
   font-family: Courier; font-size: 12px; color:#595959; line-height: 1.2em; width: 100%; margin: 0; background: #eee ;
     background:
-    url(welcome.png)    /* image */
+    url('welcome.png')    /* image */
     no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
