@@ -60,6 +60,21 @@ input[type=confirmpass] {
     border-color: #7e8d85;
     color: black;
 }
+input[type=title] {
+    background-color: #d3d3d3;
+    border-color: #7e8d85;
+    color: black;
+}
+input[type=description] {
+    background-color: #d3d3d3;
+    border-color: #7e8d85;
+    color: black;
+}
+input[type=add] {
+    background-color: #d3d3d3;
+    border-color: #7e8d85;
+    color: black;
+}
 
 /* you can put your code all in one line like above */
 dl { 
