@@ -73,10 +73,10 @@
 			while($row = mysqli_fetch_array($query))
 			{
 				$id = $row["ID"];
-				$title = $row["title"];
-				$body = $row["body"];
-				$created = $row["time_posted"];
-				$rating = $row["rating"];
+				$title = $row["name"];
+				$body = $row["description"];
+				$created = $row["since"];
+				$userID = $row["userID"];
 		
 				if(isset($_SESSION['ID']))
 				{
