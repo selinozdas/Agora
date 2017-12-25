@@ -33,13 +33,13 @@
 					
 					unset($_POST['delete_post_button']);
 					
-					header("Location: postsPage.php"); 
+					header("Location: home.php"); 
 				
 				}
 				echo '
 				<body>
 					<ul>
-						<form action ="http://localhost/agora/postsPage.php" method = "post" >
+						<form action ="http://localhost/agora/deleteChannel.php" method = "post" >
 
 							<div name = "individualComment" style="list-style-type:none">
 								<div align="left">
@@ -89,7 +89,7 @@
 					echo '
 					<body>
 						<ul>
-							<form action ="http://localhost/agora/postsPage.php" method = "post" >
+							<form action ="http://localhost/agora/deleteChannel.php" method = "post" >
 	
 								<div name = "individualComment" style="list-style-type:none">
 									<div align="left">
