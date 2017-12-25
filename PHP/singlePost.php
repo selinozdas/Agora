@@ -33,7 +33,7 @@
         session_start();
         include ("connection.php");
         include('commentOperation.php');
-        $postID = $_GET['id'];
+        $postID = $_GET['ID'];
 
         $sql = "SELECT * FROM `post` WHERE `post`.`ID` = '".$postID ."' " ;
         $select_specfic_post_query =  mysqli_query($con, $sql);    // If session is set then display the comment button else remove
@@ -63,7 +63,10 @@
                 <textarea name='commentText' cols='100' rows='5'></textarea><br>
                 <button type='submit' name='comment_Button'>Comment</button>
             </form>";
-            getComments($con , $id);   
+            getComments($con , $id);
+          // $_SESSION['ID'] = $userID;
+
+
         }
         else
         {
